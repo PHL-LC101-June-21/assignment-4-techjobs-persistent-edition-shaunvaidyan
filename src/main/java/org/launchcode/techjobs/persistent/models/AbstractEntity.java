@@ -14,8 +14,8 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    @NotBlank(message ="Name can't be null")
-    @Size(min = 1, max = 255, message ="Name length must be between 1 - 255 chars")
+    @NotBlank(message ="Name is null")
+    @Size(min = 1, max = 255, message ="Enter appropriate name length of 1-255")
     private String name;
 
     public int getId() {
@@ -25,7 +25,6 @@ public abstract class AbstractEntity {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

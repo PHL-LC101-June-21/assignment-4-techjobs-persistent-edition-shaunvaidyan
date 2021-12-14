@@ -1,17 +1,17 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Employer extends AbstractEntity {
-    @NotBlank(message ="Name can't be null")
-    @Size(min = 1, max = 255, message ="Name length must be between 1 - 255 chars")
+    @NotBlank(message ="Name is null")
+    @Size(min = 1, max = 255, message ="Enter appropriate name length of 1-255")
     private String location;
 
     @OneToMany
@@ -21,7 +21,11 @@ public class Employer extends AbstractEntity {
     public Employer() {
 
     }
-    public Employer(String location) {
+
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
         this.location = location;
     }
 }

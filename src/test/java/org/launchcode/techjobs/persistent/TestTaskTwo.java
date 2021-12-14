@@ -425,7 +425,7 @@ public class TestTaskTwo extends AbstractTest {
         Method displayViewEmployerMethod = employerControllerClass.getMethod("displayViewEmployer", Model.class, int.class);
 
         new Expectations() {{
-            employerRepository.findById(1);
+           employerRepository.findById(1);
         }};
 
         Model model = new ExtendedModelMap();

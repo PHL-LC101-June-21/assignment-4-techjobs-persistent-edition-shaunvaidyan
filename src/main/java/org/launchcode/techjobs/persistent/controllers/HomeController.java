@@ -22,7 +22,6 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
-
     @Autowired
     EmployerRepository employerRepository;
 
@@ -38,7 +37,6 @@ public class HomeController {
         model.addAttribute("title", "My Jobs");
         model.addAttribute("jobs", jobRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
-
         return "index";
     }
 
@@ -53,15 +51,13 @@ public class HomeController {
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                    Errors errors,
-                                    Model model,
-                                    @RequestParam int employerId,
-                                    @RequestParam List<Integer> skills) {
+                                       Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             return "add";
         }
+
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
         Optional optEmployer = employerRepository.findById(employerId);
@@ -69,6 +65,7 @@ public class HomeController {
             Employer employer = (Employer) optEmployer.get();
             newJob.setEmployer(employer);
         }
+
         jobRepository.save(newJob);
 
         model.addAttribute("employer", employerRepository.findById(employerId));
@@ -78,6 +75,7 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
+
         Optional optJob = jobRepository.findById(jobId);
         if (optJob.isPresent()) {
             Job job = (Job) optJob.get();
@@ -86,5 +84,6 @@ public class HomeController {
         } else {
             return "redirect:../";
         }
+
     }
 }

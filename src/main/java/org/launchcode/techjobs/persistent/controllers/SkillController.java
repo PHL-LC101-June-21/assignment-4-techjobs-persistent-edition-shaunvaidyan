@@ -36,8 +36,7 @@ public class SkillController {
                                       Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-
-            return "skills/add";
+            return "skill/add";
         }
 
         skillRepository.save(newSkill);
@@ -52,10 +51,10 @@ public class SkillController {
         if (optSkill.isPresent()) {
             Skill skill = (Skill) optSkill.get();
             model.addAttribute("skill", skill);
-
             return "skills/view";
         } else {
             return "redirect:../";
         }
     }
+
 }

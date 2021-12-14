@@ -9,6 +9,7 @@ import java.util.List;
 public class Job extends AbstractEntity {
 
     @ManyToOne
+    @NotNull(message ="Employer name required")
     private Employer employer;
 
     @ManyToMany
@@ -23,13 +24,9 @@ public class Job extends AbstractEntity {
         this.skills = someSkills;
     }
 
-    // Getters and setters.
-
-
     public Employer getEmployer() {
         return employer;
     }
-
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
